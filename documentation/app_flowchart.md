@@ -1,14 +1,17 @@
 flowchart TD
-  Start[Landing Page]
-  SignUpPage[Sign Up Page]
-  SignInPage[Sign In Page]
-  AuthAPI[Authentication API Endpoint]
-  DashboardPage[Dashboard Page]
-  Start -->|Select Sign Up| SignUpPage
-  Start -->|Select Sign In| SignInPage
-  SignUpPage -->|Submit Credentials| AuthAPI
-  SignInPage -->|Submit Credentials| AuthAPI
-  AuthAPI -->|Success| DashboardPage
-  AuthAPI -->|Error| SignUpPage
-  AuthAPI -->|Error| SignInPage
-  DashboardPage -->|Click Logout| Start
+  LP[Landing Page] -->|Select Sign Up| SU[Sign Up Page]
+  LP -->|Select Sign In| SI[Sign In Page]
+  SU -->|Submit Credentials| AUTH[Auth API]
+  SI -->|Submit Credentials| AUTH[Auth API]
+  AUTH -->|Success| DASH[Dashboard]
+  AUTH -->|Failure| AERR[Authentication Error Page]
+  subgraph Protected Routes
+    DASH
+    SETTINGS[Settings Page]
+  end
+  DASH --> SETTINGS
+  DASH -->|Log Out| LO[Log Out]
+  LO --> LP
+  AERR --> LP
+  DASH -->|Data Load Error| DERR[Data Load Error]
+  DERR --> DASH

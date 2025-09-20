@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { AuthButtons, HeroAuthButtons } from "@/components/auth-buttons";
+import { ContactForm } from "@/components/contact-form";
 import Image from "next/image";
 
 export default function Home() {
@@ -169,6 +170,7 @@ export default function Home() {
             </div>
           </div>
         </Card>
+        <ContactForm />
       </main>
     </div>
   );
